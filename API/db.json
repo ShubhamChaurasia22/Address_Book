@@ -1,0 +1,34 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Shubham",
+      "last": "Chaurasia",
+      "Contact": "9648725203"
+    },
+    {
+      "id": 2,
+      "name": "Gulshan",
+      "last": "Kumar",
+      "Contact": "8577974733"
+    },
+    {
+      "id": 3,
+      "name": "Surendra",
+      "last": "Kumar",
+      "Contact": "9876543210"
+    },
+    {
+      "id": 4,
+      "name": "Mehul",
+      "last": "Kumar",
+      "Contact": "7894561230"
+    },
+    {
+      "id": 5,
+      "name": "Sandeep",
+      "last": "Kumar",
+      "Contact": "7894561288"
+    }
+  ]
+}

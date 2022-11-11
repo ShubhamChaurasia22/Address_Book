@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    width: 5rem;
+    font-size: 16px !important;
+}
+
+.address_book {
+    max-width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.address_heading {
+    width: 100%;
+    text-align: center;
+}
+
+.address_heading > span {
+    font-size: 30px;
+}
+
+.add_col {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.address_details {
+    width: 100%;
+}
+
+.address_container {
+    margin: auto;
+    text-align: center;
+}
+
+.outline {
+    border: 0px;
+    text-align: center;
+    background-color: transparent;
+}
