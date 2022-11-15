@@ -1,22 +1,91 @@
+(function getData() {
+    $.ajax({
+        url: './API/db.json',
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function (response) {
+        $.getJSON("./API/db.json", function(posts) {
+            posts.user.forEach(items => {
+                document.querySelector('tbody').innerHTML += `
+                    <tr>
+                        <td value="${items.id}"><input type="text" id="name name-${items.id}" value="${items.name}" class="outline" disabled></td>
+                        <td><input type="text" id="last" value="${items.last}" class="outline" disabled></td>
+                        <td><input type="tel" id="tel" value="${items.Contact}" class="outline" disabled></td>
+                        <td>
+                            <button id="edit" class="btn btn-outline-primary" value="${items.id}">Edit</button>
+                            <button id="save" class="btn btn-outline-success d-none" value="${items.id}">Save</button>
+                            <button id="del" class="btn btn-outline-danger" value="${items.id}">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+    })
+    .fail(function (e) {
+        console.log(e);
+    })
+})();
 
-var address = fetch("./API/db.json")
-  .then(function (response) { return response.json()}).then(function(data) {
-    console.log(data.user[0].name);
-    for (var i = 0; i < data.length; i++) {
+// function deleteData() {
+//     $.ajax({
+//         url: 'http://localhost:3000/user',
+//         type: 'DELETE',
+//         dataType: 'json'
+//     })
+//     .done(function (response) {
+//         $.getJSON("./API/db.json", function(posts) {
+//             console.log(`${posts}`);
+//         });
         
-        document.querySelector('tbody').innerHTML += `
-        <tr>
-            <td><input type="text" id="name" value="${data.user[i].name}" class="outline"></td>
-            <td><input type="text" id="last" value="${data.user[i].last}" class="outline"></td>
-            <td><input type="tel" id="tel" value="${data.user[i].Contact}" class="outline"></td>
-            <td>
-                <button class="btn btn-outline-primary">Edit</button>
-                <button class="btn btn-outline-success d-none">Save</button>
-                <button class="btn btn-outline-danger">Delete</button>
-            </td>
-        </tr>
-        `;
-    }
-}).catch(function (e) {
-    console.log(e);
+//     })
+//     .fail(function (e) {
+//         console.log(e);
+//     })
+// }
+
+$(document).on('click', '#del', function () {
+    var url = 'http://localhost:3000/user/delete';
+    var getID = $(this).val();
+
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function (data) {
+            url = url + '/' + getID;
+            console.log(url);
+        }
+    })
+})
+
+$(document).on('click', '#add', function () {
+    var url = 'http://localhost:3000/user';
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            console.log(SuccessMessage);
+        },
+        error : function () {
+            console.log("Fail Add button");
+        }
+    })
+})
+
+$(document).on('click', '#edit', function () {
+
+    $('#edit').addClass('d-none');
+    $('#save').removeClass('d-none');
+    $('input').prop('disabled', false);
+    
+})
+
+$(document).on('click', '#save', function () {
+    $('#save').addClass('d-none');
+    $('#edit').removeClass('d-none');
+    $('input').prop('disabled', false);
+    
 })
