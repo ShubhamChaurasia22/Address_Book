@@ -9,6 +9,13 @@ button {
     font-size: 16px !important;
 }
 
+input {
+    border: 1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+}
+
 .address_book {
     max-width: 100%;
     height: max-content;
@@ -42,6 +49,5 @@ button {
 
 .outline {
     border: 0px;
-    text-align: center;
-    background-color: transparent;
+    pointer-events: none;
 }
