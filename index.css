@@ -51,3 +51,39 @@ input {
     border: 0px;
     pointer-events: none;
 }
+
+.address_popup {
+    width: 40rem;
+    height: 20rem;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    position: absolute;
+    top: 8rem;
+    left: 26rem;
+}
+
+.pop-up {
+    width: 31rem;
+    height: 17rem;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+label {
+    width: 8rem;
+    font-size: 20px;
+}
+
+.pop-up input {
+    width: 22rem;
+    height: 2.5rem;
+}
+
+.blur_bg {
+    opacity: 0.2;
+}

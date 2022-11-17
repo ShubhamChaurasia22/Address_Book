@@ -34,6 +34,30 @@
                 </tbody>
             </table>
         </div>
+        <div class="address_popup d-none">
+            <div class="pop-up">
+                <div class="form_input">
+                    <label for="id">ID:</label>
+                    <input type="text" id="form_id" value=""/> 
+                </div>
+                <div class="form_input">
+                    <label for="name">First Name:</label>
+                    <input type="text" id="form_name" value=""/> 
+                </div>
+                <div class="form_input">
+                    <label for="last">Last Name:</label>
+                    <input type="text" id="form_last" value=""/> 
+                </div>
+                <div class="form_input">
+                    <label for="Contact">Contact:</label>
+                    <input type="text" id="form_contact" value=""/> 
+                </div>
+                <div class="form_input">
+                    <button class="btn btn-outline-info" onclick="submitPopUp()">Submit</button>
+                    <button class="btn btn-outline-warning" onclick="cancelPopUp()">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- index JS -->
     <script src="./index.js"></script>

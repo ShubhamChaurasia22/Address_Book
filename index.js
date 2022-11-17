@@ -13,9 +13,9 @@
                         <td><input type="text" id="last-${items.id}" value="${items.last}" class="outline"></td>
                         <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" class="outline"></td>
                         <td>
-                            <button id="edit-${items.id}" class="btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
-                            <button id="save-${items.id}" class="btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
-                            <button class="btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
+                            <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
+                            <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
+                            <button class="button-click btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
                         </td>
                     </tr>
                 `;
@@ -93,13 +93,51 @@ function updateCol(id) {
 
 function addCol() {
     $.ajax({
-        url: "http://localhost:3000/user",
-        method: "POST",
+        url: "./",
         success: function (){
-            alert('Successfully added');
+            $('.address_popup').removeClass('d-none');
+            $('.address_heading').addClass('blur_bg');
+            $('.address_details').addClass('blur_bg');
+            $('.button-click').attr("disabled", "disabled");
         },
         error: function (e) {
             console.log(e);
         }
     })
+}
+
+function cancelPopUp() {
+    $.ajax({
+        url: "./",
+        success: function (){
+            $('.address_popup').addClass('d-none');
+            $('.address_heading').removeClass('blur_bg');
+            $('.address_details').removeClass('blur_bg');
+            $('.button-click').removeAttr('disabled');
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    })
+}
+
+function submitPopUp() {
+    var data = {};
+    data.name = $('#form_name').val();
+    data.last = $('#forem_last').val();
+    data.Contact = $('#form_tel').val(); 
+
+    var dataObj = JSON.stringify(data);
+    $.ajax({
+        url: "http://localhost:3000/user/",
+        method: "POST",
+        data: dataObj,
+        contentType: 'application/json; charset=utf-8',
+        success: function (){
+            $('.address_popup').addClass('d-none');
+        },
+        error: function (e) {
+            console.log(e);
+        }
+        })
 }
