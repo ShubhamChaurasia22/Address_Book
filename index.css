@@ -54,7 +54,8 @@ input {
 
 .address_popup {
     width: 40rem;
-    height: 20rem;
+    height: fit-content;
+    padding: 3rem;
     border: 1px solid #000;
     display: flex;
     justify-content: center;
@@ -66,7 +67,7 @@ input {
 
 .pop-up {
     width: 31rem;
-    height: 17rem;
+    height: fit-content;
     margin: auto;
     display: flex;
     justify-content: space-evenly;
@@ -74,9 +75,18 @@ input {
     flex-direction: column;
 }
 
-label {
-    width: 8rem;
+.form_input {
+    display: flex;
+    flex-wrap: nowrap;
     font-size: 20px;
+}
+
+label[for="Contact"] > span {
+    margin-right: 26px;
+}
+
+.form_input > button {
+    margin-right: 10px;
 }
 
 .pop-up input {
@@ -86,4 +96,9 @@ label {
 
 .blur_bg {
     opacity: 0.2;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
 }

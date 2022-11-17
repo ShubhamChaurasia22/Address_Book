@@ -11,8 +11,6 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Address Book</title>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="address_book">
@@ -35,30 +33,36 @@
             </table>
         </div>
         <div class="address_popup d-none">
-            <div class="pop-up">
+            <form id="form" class="pop-up">
                 <div class="form_input">
-                    <label for="id">ID:</label>
-                    <input type="text" id="form_id" value=""/> 
+                    <label for="name">
+                        <span>First Name:</span>
+                        <input type="text" id="form_name" name="name" value=""/>
+                    </label>
                 </div>
                 <div class="form_input">
-                    <label for="name">First Name:</label>
-                    <input type="text" id="form_name" value=""/> 
+                    <label for="last">
+                        <span>Last Name:</span>
+                        <input type="text" id="form_last" name="last" value=""/>
+                    </label> 
                 </div>
                 <div class="form_input">
-                    <label for="last">Last Name:</label>
-                    <input type="text" id="form_last" value=""/> 
-                </div>
-                <div class="form_input">
-                    <label for="Contact">Contact:</label>
-                    <input type="text" id="form_contact" value=""/> 
+                    <label for="Contact">
+                        <span>Contact:</span>
+                        <input type="tel" id="form_contact" name="contact" value=""/>
+                    </label> 
                 </div>
                 <div class="form_input">
                     <button class="btn btn-outline-info" onclick="submitPopUp()">Submit</button>
                     <button class="btn btn-outline-warning" onclick="cancelPopUp()">Cancel</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- JQuery Validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- index JS -->
     <script src="./index.js"></script>
     
