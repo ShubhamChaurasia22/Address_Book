@@ -9,14 +9,15 @@
             posts.user.forEach(items => {
                 document.querySelector('tbody').innerHTML += `
                     <tr>
-                        <td><input type="text" id="name-${items.id}" value="${items.name}" class="outline"></td>
-                        <td><input type="text" id="last-${items.id}" value="${items.last}" class="outline"></td>
-                        <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" class="outline"></td>
-                        <td>
-                            <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
-                            <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
-                            <button class="button-click btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
-                        </td>
+                        < id="update_form">
+                            <td><input type="text" id="name-${items.id}" value="${items.name}" class="outline" required /></td>
+                            <td><input type="text" id="last-${items.id}" value="${items.last}" class="outline" required /></td>
+                            <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" class="outline" required /></td>
+                            <td>
+                                <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
+                                <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
+                                <button class="button-click btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
+                            </td>
                     </tr>
                 `;
             });
@@ -123,21 +124,63 @@ function cancelPopUp() {
 
 function submitPopUp() {
     var data = {};
-    data.name = $('#form_name').val();
-    data.last = $('#forem_last').val();
-    data.Contact = $('#form_tel').val(); 
+    var name = $('#form_name').val();
+    var last = $('#form_last').val();
+    var contact = $('#form_contact').val(); 
 
-    var dataObj = JSON.stringify(data);
-    $.ajax({
-        url: "http://localhost:3000/user/",
-        method: "POST",
-        data: dataObj,
-        contentType: 'application/json; charset=utf-8',
-        success: function (){
-            $('.address_popup').addClass('d-none');
-        },
-        error: function (e) {
-            console.log(e);
-        }
-        })
+    if(name.length > 0 && last.length > 0 && contact > 0) {
+        data.name = name.val();
+        data.last = last.val();
+        data.Contact = contact.val();
+        var dataObj = JSON.stringify(data);
+        $.ajax({
+            url: "http://localhost:3000/user/",
+            method: "POST",
+            data: dataObj,
+            contentType: 'application/json; charset=utf-8',
+            success: function(){
+                $('.address_popup').addClass('d-none');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }else{
+        alert('Fill Information');
+    }
 }
+
+(function(){
+    var $form = $('#form');
+    if($form.length) {
+        $form.validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: '15',
+                },
+                last: {
+                    required: true,
+                    maxlength: '15'
+                },
+                contact: {
+                    number: true,
+                    minlength: '10',
+                    maxlength: '10',
+                    required: true
+                }
+            },
+            messages: {
+                name: {
+                    required: 'First name is required!'
+                },
+                last: {
+                    required: 'Last name is required!'
+                },
+                contact: {
+                    required: 'Contact is required!'
+                }
+            }
+        })
+    }
+})();
