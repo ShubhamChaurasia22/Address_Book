@@ -7,12 +7,6 @@
       "id": 1
     },
     {
-      "name": "Saurabh",
-      "last": "Singh",
-      "Contact": "9087654321",
-      "id": 6
-    },
-    {
       "name": "Riya",
       "last": "Shukla",
       "Contact": "6758493021",
@@ -20,7 +14,7 @@
     },
     {
       "name": "Surendra",
-      "last": "Kumar",
+      "last": "Prajapati",
       "Contact": "8765943210",
       "id": 8
     },
@@ -45,13 +39,13 @@
     {
       "name": "Navneet",
       "last": "Singh",
-      "Contact": "9870654321",
+      "Contact": "9870654320",
       "id": 12
     },
     {
       "name": "Anuj",
       "last": "Yadav",
-      "Contact": "9876009873",
+      "Contact": "8790658432",
       "id": 13
     },
     {

@@ -81,6 +81,10 @@ input {
     font-size: 20px;
 }
 
+label {
+    width: 31rem;
+}
+
 label[for="Contact"] > span {
     margin-right: 26px;
 }
