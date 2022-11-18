@@ -106,3 +106,7 @@ label[for="Contact"] > span {
     color: red;
     font-size: 16px;
 }
+
+.table td, .table th {
+    min-width: 100px;
+}
