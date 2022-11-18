@@ -1,6 +1,6 @@
 (function getData() {
     $.ajax({
-        url: './API/db.json',
+        url: 'http://localhost:3000/user',
         type: 'GET',
         dataType: 'json'
     })
@@ -9,9 +9,9 @@
             posts.user.forEach(items => {
                 document.querySelector('tbody').innerHTML += `
                     <tr>
-                        <td><input type="text" id="name-${items.id}" value="${items.name}" name="update_name" class="outline" required /></td>
-                        <td><input type="text" id="last-${items.id}" value="${items.last}" name="update_last" class="outline" required /></td>
-                        <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" name="update_contact" class="outline" required /></td>
+                        <td><input type="text" id="name-${items.id}" value="${items.name}" name="update_name" class="outline"/></td>
+                        <td><input type="text" id="last-${items.id}" value="${items.last}" name="update_last" class="outline"/></td>
+                        <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" name="update_contact" class="outline"/></td>
                         <td>
                             <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
                             <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
