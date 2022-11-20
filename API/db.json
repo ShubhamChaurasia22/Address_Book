@@ -20,8 +20,8 @@
     },
     {
       "name": "Saurabh",
-      "last": "Prajapati",
-      "Contact": "8765432109",
+      "last": "Prajapate",
+      "Contact": "8765432101",
       "id": 9
     },
     {
@@ -32,15 +32,9 @@
     },
     {
       "name": "Suri",
-      "last": "Saru",
-      "Contact": "7895904302",
-      "id": 11
-    },
-    {
-      "name": "Navneet",
       "last": "Singh",
-      "Contact": "9870654320",
-      "id": 12
+      "Contact": "7895904303",
+      "id": 11
     },
     {
       "name": "Anuj",
@@ -57,14 +51,8 @@
     {
       "name": "Satyam",
       "last": "Jaiswal",
-      "Contact": "8976542345",
+      "Contact": "8976542343",
       "id": 15
-    },
-    {
-      "name": "Shubham",
-      "last": "Jaiswal",
-      "Contact": "8764329183",
-      "id": 16
     }
   ]
 }
