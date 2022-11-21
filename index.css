@@ -52,6 +52,10 @@ input {
     pointer-events: none;
 }
 
+.error-outline {
+    border: 1px solid red;
+}
+
 .address_popup {
     width: 40rem;
     height: fit-content;
@@ -107,6 +111,36 @@ label[for="Contact"] > span {
     font-size: 16px;
 }
 
-.table td, .table th {
-    min-width: 100px;
+@media screen and (max-width: 768px) {
+
+    .address_popup {
+        width: 18rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        background-color: #fff;
+        position: absolute;
+        top: 13rem;
+        left: 4rem;
+    }
+    .pop-up {
+        width: 18rem;
+        height: fit-content;
+        margin: auto;
+        display: block;
+    }
+    .pop-up input {
+        width: 16rem;
+        height: 2.5rem;
+    }
+    label {
+        width: 16rem;
+    }
+    
+}
+
+@media screen and (min-width: 786px) and (max-width: 1024px) {
+    .address_popup {
+        left: 12rem;
+    }
 }

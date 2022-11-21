@@ -9,10 +9,10 @@
             posts.user.forEach(items => {
                 document.querySelector('tbody').innerHTML += `
                     <tr>
-                        <td><input type="text" id="name-${items.id}" value="${items.name}" name="update_name" class="outline"/></td>
-                        <td><input type="text" id="last-${items.id}" value="${items.last}" name="update_last" class="outline"/></td>
-                        <td><input type="tel" id="tel-${items.id}" value="${items.Contact}" name="update_contact" class="outline"/></td>
-                        <td>
+                        <td class="w-25"><input type="text" id="name-${items.id}" value="${items.name}" name="name" class="outline"/></td>
+                        <td class="w-25"><input type="text" id="last-${items.id}" value="${items.last}" name="last" class="outline"/></td>
+                        <td class="w-25"><input type="tel" id="tel-${items.id}" value="${items.Contact}" name="contact" class="outline"/></td>
+                        <td class="w-25">
                             <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
                             <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
                             <button class="button-click btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
@@ -33,7 +33,6 @@ function deleteCol(id) {
         method: 'DELETE',
         success: function () {
             alert('record deleted');
-            getData();
         },
         error: function () {
             alert('error deleting record');
@@ -57,7 +56,6 @@ function editCol(id) {
             $('#name-'+getID).val(data.name);
             $('#last-'+getID).val(data.last);
             $('#tel-'+getID).val(data.Contact);
-            getData();
         },
         error: function (e) {
             console.log(e);
@@ -67,22 +65,27 @@ function editCol(id) {
 
 function updateCol(id) {
     var data = {};
-    var update_name = $('#name-'+id).val();
-    var update_last = $('#last-'+id).val();
-    var update_contact = $('#tel-'+id).val(); 
+    var name = $('#name-'+id).val();
+    var last = $('#last-'+id).val();
+    var contact = $('#tel-'+id).val(); 
 
-    var regex_update_name = new RegExp("^[a-zA-Z]*$").test(update_name);
-    var regex_update_last = new RegExp("^[a-zA-Z]*$").test(update_last);
-    var regex_update_contact = new RegExp("^[6-9]{1}[0-9]{9}$").test(update_contact);
+    var regex_name = new RegExp("^[a-zA-Z]*$").test(name);
+    var regex_last = new RegExp("^[a-zA-Z]*$").test(last);
+    var regex_contact = new RegExp("^[6-9]{1}[0-9]{9}$").test(contact);
 
-    if(update_name.length > 0 && update_last.length > 0 && update_contact.length > 0) {
-        if(regex_update_name && regex_update_last && regex_update_contact) {
-            data.name = update_name;
-            data.last = update_last;
-            data.Contact =update_contact;
+    // inputVal(id);
 
+    if(name.length > 0 && last.length > 0 && contact.length > 0) {
+        if(regex_name && regex_last && regex_contact) {
+            data.name = name;
+            data.last = last;
+            data.Contact = contact;
             var dataObj = JSON.stringify(data);
-            updateForm();
+            $("#save-"+id).addClass('d-none');
+            $("#edit-"+id).removeClass('d-none');
+            $('#name-'+id).addClass('outline');
+            $('#last-'+id).addClass('outline');
+            $('#tel-'+id).addClass('outline');
             $.ajax({
             url: "http://localhost:3000/user/"+id,
             method: "PUT",
@@ -95,13 +98,36 @@ function updateCol(id) {
                 console.log(e);
             }
             })
-            $("#save-"+id).addClass('d-none');
-            $("#edit-"+id).removeClass('d-none');
-            $('#name-'+id).addClass('outline');
-            $('#last-'+id).addClass('outline');
-            $('#tel-'+id).addClass('outline');
         } else {
             alert("Fill Right Information");
+            var check = {};
+            check.name = regex_name;
+            check.last = regex_last;
+            check.contact = regex_contact;
+
+            Object.entries(check).forEach(([key, value]) => {
+                if(`${key}` === 'name'){
+                    if(`${value}` === 'true'){
+                        $('#name-'+id).removeClass('error-outline');
+                    }else {
+                        $('#name-'+id).addClass('error-outline');
+                    }
+                }else if(`${key}` === 'last'){
+                    if(`${value}` === 'true'){
+                        $('#last-'+id).removeClass('error-outline');
+                    }else {
+                        $('#last-'+id).addClass('error-outline');
+                    }
+                } else if(`${key}` === 'contact'){
+                    if(`${value}` === 'true'){
+                        $('#tel-'+id).removeClass('error-outline');
+                    }else {
+                        $('#tel-'+id).addClass('error-outline');
+                    }
+                }else {
+                    return 0;
+                }
+            });
         }
     }else {
         alert("Fill the Information");
@@ -174,7 +200,7 @@ function submitPopUp() {
     }
 }
 
-(function(){
+(function validation(){
     var $form = $('#form');
     if($form.length) {
         $form.validate({
@@ -182,16 +208,24 @@ function submitPopUp() {
                 name: {
                     required: true,
                     maxlength: '15',
+                    add: {
+                        regularExpression: "^[a-zA-Z]*$"
+                    }
                 },
                 last: {
                     required: true,
-                    maxlength: '15'
+                    maxlength: '15',
+                    add: {
+                        regularExpression: "^[a-zA-Z]*$"
+                    }
                 },
                 contact: {
                     number: true,
-                    minlength: '10',
                     maxlength: '10',
-                    required: true
+                    required: true,
+                    add: {
+                        regularExpression: "^[6-9]{1}[0-9]{9}$"
+                    }
                 }
             },
             messages: {
@@ -208,3 +242,55 @@ function submitPopUp() {
         })
     }
 })();
+
+// function inputVal(id) {
+//     $('#name-'+id).validate({
+//         rules: {
+//             update_name: {
+//                 required: true,
+//                 maxlength: '15',
+//                 add: {
+//                     regularExpression: "^[a-zA-Z]*$"
+//                 }
+//             }
+//         },  
+//         messages: {
+//             update_name: {
+//                 required: "Please check your input."
+//             }
+//         }  
+//     });
+//     $('#last-'+id).validate({
+//         rules: {
+//             update_last: {
+//                 required: true,
+//                 maxlength: '15',
+//                 add: {
+//                     regularExpression: "^[a-zA-Z]*$"
+//                 }
+//             }
+//         },  
+//         messages: {
+//             update_name: {
+//                 required: "Please check your input."
+//             }
+//         }  
+//     });
+//     $('#tel-'+id).validate({
+//         rules: {
+//             update_contact: {
+//                 required: true,
+//                 number: true,
+//                 maxlength: '10',
+//                 add: {
+//                     regularExpression: "^[6-9]{1}[0-9]{9}$"
+//                 }
+//             }
+//         },  
+//         messages: {
+//             update_name: {
+//                 required: "Please check your input."
+//             }
+//         }  
+//     })
+// }
