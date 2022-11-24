@@ -16,7 +16,7 @@
                             <button id="edit-${items.id}" class="button-click btn btn-outline-primary" onclick="editCol('${items.id}')">Edit</button>
                             <button id="save-${items.id}" class="button-click btn btn-outline-success d-none" onclick="updateCol('${items.id}')">Save</button>
                             <button class="button-click btn btn-outline-danger" onclick="deleteCol('${items.id}')" >Delete</button>
-                        </td>                      
+                        </td>
                     </tr>
                 `;
             });
